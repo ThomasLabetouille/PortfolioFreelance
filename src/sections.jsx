@@ -67,9 +67,15 @@ export function Chiffres() {
         <div className="limites">
           <h3>Ce qui ne marche pas encore</h3>
           <p>
-            Deux demandes très vagues sur vingt, comme « quelque chose de calme au bord de
-            la mer », reçoivent un refus alors que le catalogue avait des offres. L'outil se
-            trompe en refusant, pas en inventant. Je préfère vous le dire avant.
+            Un post-scriptum publicitaire glissé sans séparateur en bas d'un mail, du type
+            « PS : promo jusqu'au 30/06, dès 499 € », peut être pris pour une
+            information de la réservation quand le mail n'en contient qu'une. Je le sais
+            parce que je le teste, et c'est noté comme limite connue.
+          </p>
+          <p>
+            Les deux demandes très vagues que l'outil refusait à tort (« quelque chose de
+            calme au bord de la mer ») sont corrigées : les tests ont trouvé la cause, et
+            la dernière mesure avec le modèle le confirme.
           </p>
           <p className="petit">
             Mesures faites sur des jeux de test que j'ai écrits, avec un modèle qui tourne
