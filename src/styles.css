@@ -188,6 +188,8 @@ a:focus-visible, button:focus-visible, summary:focus-visible { outline: 3px soli
 .stat { border-top: 2px solid rgb(251 248 243 / 0.25); padding-top: 16px; }
 .stat-n { font-family: var(--titre); font-size: clamp(2.2rem, 4vw, 3rem); font-weight: 600; margin: 0 0 4px; color: #fff; }
 .stat-t { color: #c9cfdb; font-size: 0.95rem; margin: 0; }
+.controle { color: #dfe3ea; max-width: 760px; margin: -12px 0 32px; }
+.controle strong { color: #fff; }
 .limites { background: rgb(255 255 255 / 0.06); border: 1px solid rgb(255 255 255 / 0.14); border-radius: var(--rayon); padding: 24px 26px; max-width: 760px; }
 .limites p { color: #dfe3ea; }
 .limites .petit { color: #aab2c2; margin: 0; }

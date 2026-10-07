@@ -57,6 +57,13 @@ export function Chiffres() {
             </div>
           ))}
         </div>
+        <p className="controle">
+          <strong>Et chaque résultat est relu par un contrôle automatique.</strong> Pour
+          savoir ce qu'il vaut, j'y ai glissé exprès 281 erreurs plausibles : un prix
+          inventé, une date décalée d'un jour, l'hôtel voisin du même groupe, le prix de
+          la réservation d'à côté. Il les a toutes repérées, sans fausse alerte sur les
+          résultats justes.
+        </p>
         <div className="limites">
           <h3>Ce qui ne marche pas encore</h3>
           <p>

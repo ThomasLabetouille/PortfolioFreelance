@@ -11,7 +11,7 @@ export const site = {
   portfolioTechnique: "https://thomas-labetouille.vercel.app/",
   ficheTechniqueComptoir: "https://thomas-labetouille.vercel.app/project/comptoir",
   // Lien Calendly / Cal.com. Vide : les boutons ouvrent un mail pré-rempli.
-  rdvUrl: "https://calendly.com/thomas-labetouille/30min",
+  rdvUrl: "https://calendly.com/thomas-labetouille/15-minute-meeting",
   // Photo dans public/ (ex. "/photo.jpg"). Vide : un monogramme à la place.
   photo: "",
   // Recommandation d'un ancien client, affichée seulement si remplie.
