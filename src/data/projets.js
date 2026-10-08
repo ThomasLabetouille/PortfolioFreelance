@@ -61,27 +61,6 @@ export const bugs = [
     trouve: "Le test de non-régression, rejoué après chaque nouvelle mesure.",
     corrige: "L'aéroport est relu dans la phrase. Un modèle ne répond pas deux fois pareil : le code doit vérifier.",
   },
-  {
-    projet: "Outil 3D · Unity",
-    symptome: "Une fissure de 15 µm",
-    detail: "Entre une face et son bord, dans du code qui compilait et s'affichait parfaitement à l'écran. Trois autres bugs du même genre.",
-    trouve: "40 000 cas vérifiés en quelques secondes, sur des propriétés plutôt que sur des exemples.",
-    corrige: "Corrigé, puis revérifié par le banc, qui tourne à chaque modification.",
-  },
-  {
-    projet: "Unreal Engine · jeu",
-    symptome: "Les ennemis ne poursuivent plus",
-    detail: "La perception de tous les ennemis était coupée par un réglage. Le code compilait, aucune erreur dans les journaux : aucun contrôle du code ne pouvait le voir.",
-    trouve: "Un agent qui joue le niveau tout seul et note ce qui se passe vraiment.",
-    corrige: "Le réglage est corrigé, puis revérifié en faisant rejouer l'agent.",
-  },
-  {
-    projet: "Drone · navigation",
-    symptome: "Un signe faux, des vols qui semblaient justes",
-    detail: "Dans le calcul qui recale le filtre de navigation, faux depuis la troisième étape du projet. Une deuxième erreur rendait l'incertitude du filtre impossible après le retour du GPS.",
-    trouve: "Des vérifications indépendantes : le même calcul refait par une autre méthode, et 63 erreurs glissées exprès pour éprouver les tests.",
-    corrige: "Les deux sont corrigés, et ces vérifications font partie des 197 tests du projet.",
-  },
 ];
 
 export const projets = [

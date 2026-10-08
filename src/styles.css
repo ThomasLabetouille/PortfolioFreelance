@@ -383,3 +383,29 @@ img.portrait { object-position: 50% 22%; }
   .comparaison td.comparaison-mise { padding: 12px 16px 14px; }
   .comparaison td.comparaison-mise::before { color: var(--mer); }
 }
+
+/* Journal et refus : grilles 2 × 2 de cartes carrées */
+.journal { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.bug { grid-template-columns: 1fr; gap: 16px; align-content: start; aspect-ratio: 1 / 1; border-left-width: 1px; border-top: 4px solid var(--accent); padding: 28px; }
+.bug h3 { font-size: 1.35rem; }
+.bug-suite { border-top: 1px solid var(--ligne); padding-top: 16px; }
+.refus { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
+.refus li { aspect-ratio: 1 / 1; display: flex; flex-direction: column; justify-content: center; padding: 32px; border-width: 1.5px; }
+.refus h3 { font-size: 1.3rem; margin-bottom: 10px; }
+.refus p { font-size: 1rem; }
+@media (max-width: 1000px) {
+  .bug, .refus li { aspect-ratio: auto; }
+}
+@media (max-width: 700px) {
+  .journal, .refus { grid-template-columns: 1fr; }
+  .bug { padding: 20px; }
+  .refus li { padding: 22px; }
+}
+.journal { max-width: 900px; }
+.bug { padding: 26px; gap: 14px; }
+.refus { max-width: 760px; }
+.refus li { padding: 30px; }
+.refus h3 { font-size: 1.4rem; }
+.refus p { font-size: 1.02rem; }
+.bug { padding: 24px 26px; }
+#bugs .encart { max-width: 900px; }

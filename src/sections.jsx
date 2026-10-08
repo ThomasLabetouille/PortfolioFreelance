@@ -320,10 +320,6 @@ export function PasLeBonChoix() {
       "Avec designer, chef de projet et plusieurs développeurs, une agence est mieux armée. Je peux intervenir ensuite, sur les tests.",
     ],
     [
-      "Votre logiciel n'est pas dans mes technologies.",
-      "Je travaille en C++, C#, Python et Rust, avec Unreal Engine et Unity. Si votre outil est ailleurs, je vous le dis dès le premier appel.",
-    ],
-    [
       "Le problème ne peut pas être reproduit.",
       "Sans accès aux cas réels, même anonymisés, je ne peux pas prouver qu'un bug est corrigé. Et je ne vends pas de correction sans preuve.",
     ],
