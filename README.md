@@ -1,7 +1,7 @@
 # Site freelance
 
-Site vitrine de mon activité freelance : des outils IA pour agences de voyages, avec une démo
-rejouée de Comptoir et de Bordereau. React + Vite, une seule page, aucune dépendance en
+Site vitrine de mon activité freelance : services, projets, missions, et une démo rejouée de
+Comptoir et de Bordereau. React + Vite, une seule page, aucune dépendance en
 dehors de React et des deux polices.
 
 ## Lancer
@@ -14,15 +14,14 @@ npm run build     # sortie dans dist/
 
 ## Avant la mise en ligne
 
-Tout ce qui me concerne est dans `src/config.js` :
+Tout ce qui me concerne est dans `src/config.js` (coordonnées, prix, offre de lancement)
+et `src/data/projets.js` (services, projets, missions, avec leurs images dans
+`public/projets/`). Points à surveiller :
 
-- `siret` et `adresse` (mentions légales), encore à « À COMPLÉTER » ;
-- les prix des trois offres ;
-- `rdvUrl` si je crée un lien Calendly ou Cal.com (sinon les boutons ouvrent un mail pré-rempli) ;
-- `photo` (un fichier dans `public/`) et `temoignage`, affichés seulement s'ils sont remplis.
-
-Après le premier déploiement, remplacer `/og.png` par l'URL complète dans `index.html`
-(`og:image`) : LinkedIn n'affiche pas l'aperçu avec un chemin relatif.
+- les prix des trois offres et l'offre de lancement ;
+- `photo` (un fichier dans `public/`) et `temoignage`, affichés seulement s'ils sont remplis ;
+- les chiffres de `src/data/projets.js` et de `Preuves` dans `src/App.jsx`, qui doivent rester
+  ceux mesurés dans chaque projet.
 
 ## Déployer sur Vercel
 

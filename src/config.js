@@ -9,7 +9,6 @@ export const site = {
   github: "https://github.com/ThomasLabetouille",
   // Le portfolio technique, pour le service informatique du client.
   portfolioTechnique: "https://thomas-labetouille.vercel.app/",
-  ficheTechniqueComptoir: "https://thomas-labetouille.vercel.app/project/comptoir",
   // Lien Calendly / Cal.com. Vide : les boutons ouvrent un mail pré-rempli.
   rdvUrl: "https://calendly.com/thomas-labetouille/15-minute-meeting",
   // Photo dans public/ (ex. "/photo.jpg"). Vide : un monogramme à la place.
@@ -39,21 +38,21 @@ export const offres = [
     pitch: "Savoir si un outil vaut le coup, avant de dépenser plus.",
     points: [
       "Une demi-journée avec vos équipes, sur leur poste",
-      "50 de vos documents réels passés dans l'outil, résultats mesurés",
+      "Vos vrais documents ou données passés dans un prototype, résultats mesurés",
       "Un rapport de deux pages : temps gagnable, erreurs évitables, limites",
       "Si la réponse est non, je vous le dis",
     ],
   },
   {
-    id: "pilote",
-    nom: "Pilote",
+    id: "projet",
+    nom: "Projet",
     duree: "4 à 6 semaines",
     prix: "à partir de 5 000 €",
-    pitch: "Un outil sur un seul flux, branché sur vos données.",
+    pitch: "Un outil sur un besoin précis, branché sur vos données.",
     points: [
-      "Un flux choisi ensemble : demandes clients, confirmations d'un réceptif…",
-      "Critères de réussite chiffrés et écrits avant de commencer",
-      "Vos équipes l'utilisent pour de vrai pendant le pilote",
+      "Un périmètre choisi ensemble et écrit noir sur blanc",
+      "Critères de réussite chiffrés avant de commencer",
+      "Tests et mesures livrés avec le code",
       "À la fin, vous gardez l'outil ou vous arrêtez",
     ],
     recommande: true,
@@ -63,15 +62,19 @@ export const offres = [
     nom: "Suivi",
     duree: "au mois",
     prix: "à partir de 250 € / mois",
-    pitch: "Un outil qui reste fiable quand vos fournisseurs changent.",
+    pitch: "Un outil qui reste fiable quand vos données changent.",
     points: [
-      "Mise à jour du catalogue et du référentiel hôtels",
-      "Nouvelle mesure chaque mois sur les documents du mois",
-      "Correction quand un fournisseur change de format",
+      "Corrections et petites évolutions",
+      "Nouvelle mesure chaque mois sur des données récentes",
+      "Adaptation quand un format ou un logiciel change",
       "Sans engagement de durée",
     ],
   },
 ];
+
+// Renfort sur un projet existant, facture a la journee.
+export const renfort =
+  "Besoin d'un développeur en renfort sur un projet existant (C++, C#, Python, Rust, Unreal Engine, Unity) ? Mission à la journée, sur site à Toulouse ou à distance, devis sur demande.";
 
 export function lienRdv(sujet = "Échange de 15 minutes") {
   if (site.rdvUrl) return site.rdvUrl;

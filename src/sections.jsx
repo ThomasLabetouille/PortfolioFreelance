@@ -1,87 +1,97 @@
 import { useEffect, useRef } from "react";
-import { site, offres, lienRdv } from "./config.js";
+import { site, offres, renfort, lienRdv } from "./config.js";
+import { services, projets, missions } from "./data/projets.js";
 
-export function Problemes() {
-  const cas = [
-    {
-      titre: "Au comptoir et au téléphone",
-      texte:
-        "« On est quatre, deux enfants, Crète ou Sicile, 3 500 € maximum, départ Toulouse. » L'agent traduit ça en une dizaine de filtres, recalcule le prix pour cette famille, et recommence dès que le client change d'avis.",
-    },
-    {
-      titre: "Au back-office",
-      texte:
-        "Les confirmations des hôteliers et des réceptifs arrivent par mail : en prose, en tableau, avec une remise ajoutée en cours de route. Quelqu'un les recopie, ligne par ligne, dans votre logiciel.",
-    },
-    {
-      titre: "Avec l'IA grand public",
-      texte:
-        "ChatGPT comprend très bien la demande. Mais il invente aussi : un prix arrondi, l'hôtel voisin, une piscine chauffée. Au comptoir, une promesse fausse se paie deux fois : le litige, puis le client.",
-    },
-  ];
+export function Services() {
   return (
-    <section className="section" id="probleme">
+    <section className="section" id="services">
       <div className="conteneur">
-        <p className="surtitre">Le constat</p>
-        <h2>Là où vos équipes perdent du temps</h2>
+        <p className="surtitre">Ce que je fais</p>
+        <h2>Trois façons de vous faire gagner du temps</h2>
         <div className="grille-3">
-          {cas.map((c) => (
-            <article className="carte" key={c.titre}>
-              <h3>{c.titre}</h3>
-              <p>{c.texte}</p>
+          {services.map((s, i) => (
+            <article className="carte service" key={s.id}>
+              <span className="service-n" aria-hidden="true">0{i + 1}</span>
+              <h3>{s.titre}</h3>
+              <p>{s.texte}</p>
+              <a className="service-lien" href={s.ancre}>
+                Exemple : {s.exemple} →
+              </a>
             </article>
           ))}
         </div>
+        <p className="encart">
+          <strong>Pas forcément de l'IA.</strong> Quand une règle simple suffit, je l'écris :
+          c'est moins cher et plus fiable. L'IA sert là où il faut comprendre du texte libre.
+        </p>
       </div>
     </section>
   );
 }
 
-export function Chiffres() {
-  const stats = [
-    ["20/20", "demandes clients comprises, écrites comme on parle au téléphone"],
-    ["8/8", "demandes sans séjour possible : l'outil l'a dit, au lieu de proposer autre chose"],
-    ["263/263", "valeurs lues dans les courriers et rattachées à la bonne réservation"],
-    ["33/33", "informations absentes laissées vides, jamais complétées au hasard"],
-  ];
+export function Projets() {
   return (
-    <section className="section section-sombre" id="chiffres">
+    <section className="section section-teinte" id="projets">
       <div className="conteneur">
-        <p className="surtitre">Résultats</p>
-        <h2>Mesuré, pas promis</h2>
-        <div className="stats">
-          {stats.map(([n, t]) => (
-            <div className="stat" key={t}>
-              <p className="stat-n">{n}</p>
-              <p className="stat-t">{t}</p>
-            </div>
+        <p className="surtitre">Projets</p>
+        <h2>Ce que j'ai construit</h2>
+        <p className="intro">
+          Des projets personnels, menés comme des missions : un besoin, un outil, et la preuve
+          chiffrée qu'il fait ce qu'il annonce. Le code de la plupart est public.
+        </p>
+        <div className="projets">
+          {projets.map((p) => (
+            <article className="projet" id={`projet-${p.id}`} key={p.id}>
+              <img src={p.image} alt="" loading="lazy" width="960" height="540" />
+              <div className="projet-corps">
+                <p className="projet-domaine">{p.domaine}</p>
+                <h3>{p.titre}</h3>
+                <p>{p.resume}</p>
+                <p className="projet-preuve">{p.preuve}</p>
+                <ul className="projet-tech" aria-label="Technologies">
+                  {p.tech.map((t) => (
+                    <li key={t}>{t}</li>
+                  ))}
+                </ul>
+                <p className="projet-liens">
+                  {p.liens.map((l) => (
+                    <a key={l.href} href={l.href}
+                       {...(l.href.startsWith("http") ? { target: "_blank", rel: "noreferrer" } : {})}>
+                      {l.libelle}
+                    </a>
+                  ))}
+                </p>
+              </div>
+            </article>
           ))}
         </div>
-        <p className="controle">
-          <strong>Et chaque résultat est relu par un contrôle automatique.</strong> Pour
-          savoir ce qu'il vaut, j'y ai glissé exprès 281 erreurs plausibles : un prix
-          inventé, une date décalée d'un jour, l'hôtel voisin du même groupe, le prix de
-          la réservation d'à côté. Il les a toutes repérées, sans fausse alerte sur les
-          résultats justes.
+        <p className="petit centre">
+          Tous mes projets, jeux vidéo compris, sont sur{" "}
+          <a href={site.portfolioTechnique}>mon portfolio technique</a>.
         </p>
-        <div className="limites">
-          <h3>Ce qui ne marche pas encore</h3>
-          <p>
-            Un post-scriptum publicitaire glissé sans séparateur en bas d'un mail, du type
-            « PS : promo jusqu'au 30/06, dès 499 € », peut être pris pour une
-            information de la réservation quand le mail n'en contient qu'une. Je le sais
-            parce que je le teste, et c'est noté comme limite connue.
-          </p>
-          <p>
-            Les deux demandes très vagues que l'outil refusait à tort (« quelque chose de
-            calme au bord de la mer ») sont corrigées : les tests ont trouvé la cause, et
-            la dernière mesure avec le modèle le confirme.
-          </p>
-          <p className="petit">
-            Mesures faites sur des jeux de test que j'ai écrits, avec un modèle qui tourne
-            sur un ordinateur de bureau, sans service en ligne. Sur vos documents, on mesure
-            à nouveau : c'est le but du diagnostic.
-          </p>
+      </div>
+    </section>
+  );
+}
+
+export function Missions() {
+  return (
+    <section className="section" id="missions">
+      <div className="conteneur">
+        <p className="surtitre">Expérience</p>
+        <h2>Missions</h2>
+        <div className="missions">
+          {missions.map((m) => (
+            <article className="mission" key={m.client}>
+              <img src={m.image} alt="" loading="lazy" width="960" height="540" />
+              <div>
+                <p className="projet-domaine">{m.periode} · {m.cadre}</p>
+                <h3>{m.client}</h3>
+                <p className="mission-role">{m.role}</p>
+                <p>{m.texte}</p>
+              </div>
+            </article>
+          ))}
         </div>
       </div>
     </section>
@@ -94,29 +104,30 @@ export function Methode() {
       n: "1",
       titre: "Comprendre",
       texte:
-        "L'IA lit la phrase du client ou le mail de l'hôtelier et le range en cases : voyageurs, dates, budget, hôtel, prix. C'est ce qu'elle fait bien.",
+        "Je passe du temps avec les gens qui font le travail, sur leurs vrais documents et leurs vrais cas difficiles. C'est là que se cachent les erreurs qui coûtent cher.",
     },
     {
       n: "2",
-      titre: "Vérifier",
+      titre: "Construire",
       texte:
-        "Tout ce qui se vérifie est tranché par des règles, sur votre catalogue et votre liste d'hôtels : un budget, une capacité de chambre, l'âge d'accueil d'un club enfants. Aucune IA ne décide si 3 293 € tient dans 3 000 €.",
+        "L'IA comprend le texte libre, des règles écrites décident tout ce qui se vérifie : un prix, une date, une capacité. Ce qui est incertain est signalé, jamais deviné.",
     },
     {
       n: "3",
-      titre: "Signaler",
+      titre: "Prouver",
       texte:
-        "Ce qui est incertain est marqué à relire : prix absent, correction en cours de mail, hôtel ambigu. Votre équipe valide. L'outil ne fait rien en douce.",
+        "Avant de livrer, je mesure : sur vos données, puis en glissant exprès des erreurs pour vérifier que les contrôles les attrapent. Vous recevez les chiffres avec l'outil.",
     },
   ];
   return (
     <section className="section" id="methode">
       <div className="conteneur">
         <p className="surtitre">La méthode</p>
-        <h2>L'IA comprend, les règles décident</h2>
+        <h2>Un outil qui a l'air de marcher ne suffit pas</h2>
         <p className="intro">
-          Un assistant branché tel quel sur un catalogue comprend bien la demande, et
-          invente aussi. Je sépare donc ce que fait le modèle de ce que fait le code.
+          Le fil commun de tous mes projets, du simulateur de vol à l'assistant IA : un
+          logiciel qui ne plante pas peut quand même se tromper en silence. Mon travail est
+          de rendre ses erreurs visibles avant qu'elles arrivent chez vous.
         </p>
         <ol className="etapes">
           {etapes.map((e) => (
@@ -127,11 +138,15 @@ export function Methode() {
             </li>
           ))}
         </ol>
-        <p className="encart">
-          <strong>Pas besoin de changer de logiciel.</strong> L'outil part de ce que vous
-          avez déjà (exports de catalogue, mails reçus) et produit un tableau que votre
-          équipe valide avant de l'importer.
-        </p>
+        <div className="limites limites-clair">
+          <h3>Ce que mes chiffres ne disent pas</h3>
+          <p>
+            Ils viennent de projets personnels, mesurés sur des jeux de test que j'ai écrits.
+            Ils montrent une façon de travailler, pas une garantie sur votre cas : chez vous,
+            on mesure à nouveau sur vos données. C'est le but du diagnostic. Et chaque projet
+            liste dans sa documentation ce qui ne marche pas encore.
+          </p>
+        </div>
       </div>
     </section>
   );
@@ -168,9 +183,7 @@ export function Offres() {
         </p>
         {site.offreLancement && <p className="lancement">{site.offreLancement}</p>}
         <p className="encart">
-          <strong>Pas une agence de voyages ?</strong> La méthode marche partout où quelqu'un
-          ressaisit des documents : devis, bons de commande, factures fournisseurs, demandes
-          clients.
+          <strong>Renfort.</strong> {renfort}
         </p>
       </div>
     </section>
@@ -180,28 +193,32 @@ export function Offres() {
 export function Questions() {
   const faq = [
     [
-      "Mes données clients partent-elles chez OpenAI ou Google ?",
-      "Pas forcément. Mes outils peuvent tourner avec un modèle installé sur une machine chez vous, sans connexion à un service en ligne. C'est ainsi que les démos ci-dessus ont été mesurées. On choisit ensemble selon vos contraintes, et je signe un accord de confidentialité si vous le souhaitez.",
+      "Vous êtes spécialisé dans quel secteur ?",
+      "Pas encore dans un seul. Mes projets et missions touchent le jeu vidéo, la simulation aéronautique, le drone et le voyage. Ce qui ne change pas d'un secteur à l'autre : comprendre le métier avant d'écrire du code, et prouver que l'outil fait ce qu'il dit. Je commence toujours par du temps avec les gens qui font le travail.",
     ],
     [
-      "Et si l'outil se trompe ?",
-      "Il se trompera parfois. Le travail consiste à ce qu'il se trompe dans le bon sens : laisser un champ vide plutôt que l'inventer, signaler un doute plutôt que trancher. Chaque erreur est mesurée, et votre équipe garde la validation finale.",
+      "Faut-il forcément de l'IA ?",
+      "Non. Si une règle simple suffit, je l'écris : c'est moins cher, plus rapide et plus fiable. L'IA est utile pour comprendre du texte libre (un mail, une demande client), pas pour décider d'un prix ou d'une date.",
     ],
     [
-      "Faut-il changer de logiciel de réservation ?",
-      "Non. L'outil lit ce que vous recevez déjà et prépare des lignes au format que vous importez aujourd'hui. Le branchement direct sur votre logiciel se discute ensuite, s'il en vaut la peine.",
+      "Mes données partent-elles chez OpenAI ou Google ?",
+      "Pas forcément. Mes outils peuvent tourner avec un modèle installé sur une machine chez vous, sans connexion à un service en ligne : c'est ainsi que mes démonstrations ont été mesurées. On choisit ensemble selon vos contraintes, et je signe un accord de confidentialité si vous le souhaitez.",
     ],
     [
-      "En combien de temps voit-on un résultat ?",
-      "Le diagnostic prend deux jours de travail, et vous avez le rapport dans les deux semaines. Un pilote dure quatre à six semaines, avec des critères de réussite fixés au départ.",
+      "Et si l'outil se trompe ?",
+      "Il se trompera parfois. Le travail consiste à ce qu'il se trompe dans le bon sens : laisser un champ vide plutôt que l'inventer, signaler un doute plutôt que trancher. Chaque erreur est mesurée, et votre équipe garde la validation finale.",
     ],
     [
-      "Vous n'avez jamais travaillé en agence ?",
-      "Non. C'est pour ça que je commence par passer du temps avec vos équipes et par mesurer sur vos vrais documents. Ce que j'apporte, c'est de savoir comment une IA se trompe, et comment l'en empêcher. Dans votre métier, c'est ce qui coûte cher.",
+      "Faut-il changer de logiciel ?",
+      "Non. L'outil part de ce que vous avez déjà (mails, exports, fichiers, Microsoft 365) et produit un résultat que votre équipe valide avant de l'utiliser. Le branchement direct sur vos logiciels se discute ensuite, s'il en vaut la peine.",
     ],
     [
-      "Qui maintient l'outil après le projet ?",
-      "Vous avez le choix : le code et la documentation vous sont remis, votre informatique peut le reprendre. Ou je m'en occupe avec l'offre de suivi, sans engagement de durée.",
+      "En combien de temps voit-on un résultat ?",
+      "Le diagnostic prend deux jours de travail, et vous avez le rapport dans les deux semaines. Un projet dure quatre à six semaines, avec des critères de réussite fixés au départ.",
+    ],
+    [
+      "Qui maintient l'outil après le projet ?",
+      "Vous avez le choix : le code et la documentation vous sont remis, votre informatique peut le reprendre. Ou je m'en occupe avec l'offre de suivi, sans engagement de durée.",
     ],
   ];
   return (
@@ -228,34 +245,32 @@ export function APropos() {
       <div className="conteneur apropos">
         {site.photo ? (
           <img className="portrait" src={site.photo} alt={`Portrait de ${site.nom}`} width="180" height="180" />
-        ) : (
+        ) : (
           <div className="portrait" aria-hidden="true">TL</div>
         )}
         <div>
           <p className="surtitre">Qui je suis</p>
           <h2>Thomas Labetouille</h2>
           <p>
-            Je suis développeur freelance à Toulouse. J'ai passé quatorze mois sur des
-            simulateurs aéronautiques pour la défense chez CS Group, un milieu où un
-            logiciel qui « a l'air de marcher » ne suffit pas. J'ai ensuite fait un an de
-            mission freelance sur un jeu vidéo.
+            Je suis développeur freelance à Toulouse. J'ai commencé par un an de mission
+            freelance sur un jeu vidéo sous Unreal Engine, puis passé quatorze mois sur des
+            simulateurs aéronautiques pour la défense chez CS Group, un milieu où un logiciel
+            qui « a l'air de marcher » ne suffit pas.
           </p>
           <p>
-            Depuis, je construis des outils avec l'IA, et surtout ce qui vérifie ce qu'elle
-            produit. Je ne viens pas du tourisme : je commence donc toujours par écouter les
-            gens qui font le métier.
+            Depuis, je construis des outils avec l'IA et du logiciel technique, et surtout ce
+            qui vérifie ce qu'ils produisent. Je ne suis pas encore spécialisé dans un secteur :
+            je commence toujours par écouter les gens qui font le métier.
           </p>
           {site.temoignage && (
             <blockquote className="temoignage">
-              <p>« {site.temoignage.texte} »</p>
+              <p>« {site.temoignage.texte} »</p>
               <footer>{site.temoignage.auteur}</footer>
             </blockquote>
           )}
           <p className="liens-tech">
-            Pour votre service informatique :{" "}
-            <a href={site.ficheTechniqueComptoir}>la fiche technique des deux outils</a>,{" "}
-            <a href={site.portfolioTechnique}>mon portfolio technique</a> et{" "}
-            <a href={site.github}>mon code sur GitHub</a>.
+            Pour votre service informatique : <a href={site.portfolioTechnique}>mon portfolio
+            technique</a> et <a href={site.github}>mon code sur GitHub</a>.
           </p>
         </div>
       </div>
@@ -268,11 +283,11 @@ export function Contact() {
     <section className="section contact" id="contact">
       <div className="conteneur conteneur-etroit centre">
         <p className="surtitre">Contact</p>
-        <h2>Parlons de votre cas</h2>
+        <h2>Parlons de votre besoin</h2>
         <p className="intro">
-          Un échange de 15 minutes, sans engagement. Vous me décrivez la tâche qui prend le
-          plus de temps à vos équipes, je vous dis si un outil peut aider et ce que ça
-          coûterait.
+          Un échange de 15 minutes, sans engagement. Vous me décrivez la tâche qui prend le
+          plus de temps à vos équipes, ou le logiciel qui vous pose problème, et je vous dis
+          si je peux aider et ce que ça coûterait.
         </p>
         <div className="actions actions-centre">
           <a className="bouton" href={lienRdv()}>
@@ -306,8 +321,8 @@ export function MentionsLegales() {
       <summary>Mentions légales</summary>
       <div>
         <p>
-          <strong>Éditeur :</strong> {site.nom}, {site.statut}. SIRET : {site.siret}.
-          Adresse : {site.adresse}. Contact : {site.email}. Directeur de la publication :{" "}
+          <strong>Éditeur :</strong> {site.nom}, {site.statut}. SIRET : {site.siret}.
+          Adresse : {site.adresse}. Contact : {site.email}. Directeur de la publication :{" "}
           {site.nom}.
         </p>
         <p>

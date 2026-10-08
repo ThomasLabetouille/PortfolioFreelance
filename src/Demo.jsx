@@ -11,11 +11,13 @@ export default function Demo() {
   return (
     <section className="section demo" id="demo">
       <div className="conteneur">
-        <p className="surtitre">Démonstration</p>
-        <h2>Essayez sur des cas concrets</h2>
+        <p className="surtitre">Démo interactive</p>
+        <h2>Étude de cas : l'IA qui lit des demandes et des mails</h2>
         <p className="intro">
-          Deux outils que j'ai construits pour montrer la méthode. Choisissez une demande
-          client ou un courrier d'hôtelier : vous voyez exactement ce que l'outil en tire.
+          Projet personnel, construit sur l'exemple d'une agence de voyages : un métier où
+          une erreur se paie tout de suite, ce qui en fait un bon terrain d'essai. Les données
+          sont fictives, la méthode vaut pour tout métier qui traite des documents. Choisissez
+          une demande ou un mail : vous voyez exactement ce que l'outil en tire.
         </p>
 
         <div className="onglets" role="tablist" aria-label="Choisir l'outil">

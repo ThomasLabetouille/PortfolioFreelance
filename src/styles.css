@@ -281,3 +281,50 @@ img.portrait { object-fit: cover; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
 }
+
+/* --- Version generique : services, projets, missions, preuves --- */
+.service { display: flex; flex-direction: column; }
+.service-n { font-family: var(--titre); font-size: 0.95rem; color: var(--accent); font-weight: 600; margin-bottom: 10px; }
+.service p { flex: 1; margin-bottom: 16px !important; }
+.service-lien { font-weight: 600; font-size: 0.92rem; text-decoration: none; }
+.service-lien:hover { text-decoration: underline; }
+#services .encart { margin-top: 26px; }
+
+.projets { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; margin-bottom: 26px; }
+.projet { background: var(--blanc); border: 1px solid var(--ligne); border-radius: 18px; overflow: hidden; display: flex; flex-direction: column; box-shadow: var(--ombre); scroll-margin-top: 90px; }
+.projet img, .mission img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; background: var(--encre); }
+.projet-corps { padding: 22px 24px 24px; display: flex; flex-direction: column; flex: 1; }
+.projet-domaine, .projet-corps > .projet-domaine { font-size: 0.76rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; color: var(--encre-3); margin-bottom: 6px; }
+.projet h3 { font-size: 1.35rem; margin-bottom: 8px; }
+.projet-corps > p { color: var(--encre-2); font-size: 0.97rem; }
+.projet-preuve { background: var(--mer-clair); color: var(--mer) !important; font-weight: 600; border-radius: 10px; padding: 10px 14px; font-size: 0.92rem !important; }
+.projet-tech { list-style: none; padding: 0; margin: 0 0 16px; display: flex; flex-wrap: wrap; gap: 6px; }
+.projet-tech li { font-size: 0.8rem; border: 1px solid var(--ligne); border-radius: 999px; padding: 3px 10px; color: var(--encre-2); }
+.projet-liens { margin: auto 0 0; display: flex; flex-wrap: wrap; gap: 8px 18px; }
+.projet-liens a { font-weight: 600; font-size: 0.92rem; text-decoration: none; }
+.projet-liens a::after { content: " →"; }
+.projet-liens a:hover { text-decoration: underline; }
+
+.missions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
+.mission { display: grid; grid-template-columns: 200px 1fr; gap: 20px; align-items: start; background: var(--blanc); border: 1px solid var(--ligne); border-radius: 18px; padding: 18px; }
+.mission img { border-radius: 10px; }
+.mission h3 { margin-bottom: 2px; }
+.mission-role { font-weight: 600; color: var(--encre); margin-bottom: 6px; }
+.mission p:last-child { color: var(--encre-2); margin: 0; font-size: 0.95rem; }
+
+.preuves { list-style: none; padding: 0; margin: 0 0 14px; display: grid; gap: 10px; }
+.preuves li { display: grid; grid-template-columns: 96px 1fr; gap: 12px; align-items: center; background: var(--papier); border: 1px solid var(--ligne); border-radius: 12px; padding: 12px 14px; }
+.preuves strong { font-family: var(--titre); font-size: 1.35rem; font-weight: 600; color: var(--encre); white-space: nowrap; }
+.preuves span { font-size: 0.88rem; color: var(--encre-2); line-height: 1.4; }
+.preuves small { display: block; font-size: 0.74rem; text-transform: uppercase; letter-spacing: 0.08em; color: var(--accent); margin-top: 3px; font-weight: 600; }
+
+.limites-clair { background: var(--papier); border: 1px solid var(--ligne); margin-top: 8px; }
+.limites-clair p { color: var(--encre-2); margin: 0; }
+
+@media (max-width: 900px) {
+  .projets, .missions { grid-template-columns: 1fr; }
+}
+@media (max-width: 560px) {
+  .mission { grid-template-columns: 1fr; }
+  .preuves li { grid-template-columns: 80px 1fr; }
+}
