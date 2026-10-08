@@ -100,14 +100,13 @@ function Hero() {
             </p>
           </div>
           <h1>
-            Je résous vos bugs,
-            <em> et je vérifie qu'ils ne reviennent pas.</em>
+            Votre équipe fait le travail.
+            <em> Je m'assure que ses outils suivent.</em>
           </h1>
           <p className="chapeau">
-            Je trouve la cause des bugs et des problèmes de vos logiciels et de vos outils IA,
-            en m'aidant de l'IA pour aller plus vite. Puis je mets en place les tests qui
-            vérifient, à chaque modification, que tout se passe toujours bien. Ce que je livre
-            est vérifié en continu, et votre équipe garde la main.
+            Je vous aide à travailler plus sereinement, avec des outils vérifiés en continu.
+            Quand un bug apparaît, j'en trouve la cause en m'aidant de l'IA, je le corrige, et
+            j'ajoute le test qui l'empêche de revenir.
           </p>
           <div className="actions">
             <a className="bouton" href="#bugs">Voir les bugs trouvés</a>
