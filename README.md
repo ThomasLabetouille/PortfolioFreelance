@@ -1,6 +1,7 @@
 # Site freelance
 
-Site vitrine de mon activité freelance : services, projets, missions, et une démo rejouée de
+Site vitrine de mon activité freelance (résolution de bugs et mise en place de tests) :
+services, journal des bugs, projets, missions, et une démo rejouée de
 Comptoir et de Bordereau. React + Vite, une seule page, aucune dépendance en
 dehors de React et des deux polices.
 
@@ -20,8 +21,8 @@ et `src/data/projets.js` (services, projets, missions, avec leurs images dans
 
 - les prix des trois offres et l'offre de lancement ;
 - `photo` (un fichier dans `public/`) et `temoignage`, affichés seulement s'ils sont remplis ;
-- les chiffres de `src/data/projets.js` et de `Preuves` dans `src/App.jsx`, qui doivent rester
-  ceux mesurés dans chaque projet.
+- les chiffres de `src/data/projets.js` (projets et journal des bugs) et de `Preuves` dans
+  `src/App.jsx`, qui doivent rester ceux mesurés dans chaque projet.
 
 ## Déployer sur Vercel
 

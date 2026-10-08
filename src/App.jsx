@@ -3,10 +3,13 @@ import { site, lienRdv } from "./config.js";
 import Demo from "./Demo.jsx";
 import {
   Services,
+  Bugs,
   Projets,
   Missions,
   Methode,
+  Comparaison,
   Offres,
+  PasLeBonChoix,
   Questions,
   APropos,
   Contact,
@@ -17,6 +20,7 @@ function Entete() {
   const [ouvert, setOuvert] = useState(false);
   const liens = [
     ["#services", "Services"],
+    ["#bugs", "Bugs trouvés"],
     ["#projets", "Projets"],
     ["#demo", "Démo"],
     ["#offres", "Offres"],
@@ -57,14 +61,14 @@ function Entete() {
 
 function Preuves() {
   const lignes = [
-    ["263/263", "valeurs lues dans des mails, rattachées au bon dossier", "IA et documents"],
-    ["281/281", "erreurs glissées exprès, toutes repérées", "contrôle automatique"],
-    ["40 000", "cas vérifiés en quelques secondes", "outil 3D Unity"],
-    ["15 m", "d'erreur sans GPS, contre 85 m sans le filtre", "navigation de drone"],
+    ["281/281", "erreurs glissées exprès dans les résultats d'une IA, toutes repérées", "Bordereau"],
+    ["8", "erreurs de l'IA et bugs trouvés par les tests, corrigés et verrouillés", "Comptoir & Bordereau"],
+    ["4", "vrais bugs dans du code qui avait l'air de marcher", "outil 3D Unity"],
+    ["63/63", "erreurs glissées exprès dans le code, toutes détectées par les tests", "navigation de drone"],
   ];
   return (
     <aside className="apercu" aria-label="Quelques résultats mesurés">
-      <p className="apercu-titre">Ce que mes outils ont prouvé</p>
+      <p className="apercu-titre">Ce que mes tests ont trouvé</p>
       <ul className="preuves">
         {lignes.map(([n, texte, source]) => (
           <li key={source}>
@@ -76,7 +80,7 @@ function Preuves() {
           </li>
         ))}
       </ul>
-      <a href="#projets" className="apercu-lien">Voir les projets →</a>
+      <a href="#bugs" className="apercu-lien">Voir le journal des bugs →</a>
     </aside>
   );
 }
@@ -86,27 +90,35 @@ function Hero() {
     <section className="hero" id="haut">
       <div className="conteneur hero-in">
         <div className="hero-texte">
-          <p className="surtitre">Développeur freelance · Toulouse et à distance</p>
+          <div className="identite">
+            {site.photo && (
+              <img className="identite-photo" src={site.photo} alt={`Portrait de ${site.nom}`} width="96" height="96" />
+            )}
+            <p>
+              <strong>{site.nom}</strong>
+              <span>Développeur freelance · Toulouse et à distance</span>
+            </p>
+          </div>
           <h1>
-            Des outils qui font le travail répétitif,
-            <em> et la preuve qu'ils ne se trompent pas.</em>
+            Je résous vos bugs,
+            <em> et je vérifie qu'ils ne reviennent pas.</em>
           </h1>
           <p className="chapeau">
-            J'automatise ce que vos équipes font à la main : lire des documents, répondre à
-            des demandes, faire dialoguer deux logiciels. Avec l'IA quand elle aide, avec du
-            code classique quand il suffit, et toujours avec les tests qui montrent que le
-            résultat est juste.
+            Je trouve la cause des bugs et des problèmes de vos logiciels et de vos outils IA,
+            en m'aidant de l'IA pour aller plus vite. Puis je mets en place les tests qui
+            vérifient, à chaque modification, que tout se passe toujours bien. Ce que je livre
+            est vérifié en continu, et votre équipe garde la main.
           </p>
           <div className="actions">
-            <a className="bouton" href="#projets">Voir mes projets</a>
+            <a className="bouton" href="#bugs">Voir les bugs trouvés</a>
             <a className="bouton bouton-second" href={lienRdv()}>
-              Réserver 15 minutes
+              Réserver 15 minutes
             </a>
           </div>
           <ul className="garanties">
-            <li>Diagnostic à prix fixe avant tout engagement</li>
-            <li>Vos données peuvent rester sur vos machines</li>
-            <li>Le code vous appartient</li>
+            <li>Chaque correction livrée avec son test</li>
+            <li>Audit à prix fixe avant tout engagement</li>
+            <li>Le code et les tests vous appartiennent</li>
           </ul>
         </div>
         <Preuves />
@@ -123,11 +135,14 @@ export default function App() {
       <main>
         <Hero />
         <Services />
+        <Bugs />
         <Projets />
         <Demo />
         <Methode />
+        <Comparaison />
         <Missions />
         <Offres />
+        <PasLeBonChoix />
         <Questions />
         <APropos />
         <Contact />

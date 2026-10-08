@@ -12,12 +12,14 @@ export default function Demo() {
     <section className="section demo" id="demo">
       <div className="conteneur">
         <p className="surtitre">Démo interactive</p>
-        <h2>Étude de cas : l'IA qui lit des demandes et des mails</h2>
+        <h2>Étude de cas : une IA qu'on surveille</h2>
         <p className="intro">
           Projet personnel, construit sur l'exemple d'une agence de voyages : un métier où
-          une erreur se paie tout de suite, ce qui en fait un bon terrain d'essai. Les données
-          sont fictives, la méthode vaut pour tout métier qui traite des documents. Choisissez
-          une demande ou un mail : vous voyez exactement ce que l'outil en tire.
+          une erreur se paie tout de suite, ce qui en fait un bon terrain d'essai. L'IA lit le
+          texte, puis du code relit chacun de ses résultats : c'est là que les tests ont trouvé
+          les erreurs racontées dans <a href="#bugs">le journal des bugs</a>. Les données sont
+          fictives. Choisissez une demande ou un mail : vous voyez exactement ce que l'outil en
+          tire, et ce qu'il signale comme douteux.
         </p>
 
         <div className="onglets" role="tablist" aria-label="Choisir l'outil">

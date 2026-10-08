@@ -12,7 +12,7 @@ export const site = {
   // Lien Calendly / Cal.com. Vide : les boutons ouvrent un mail pré-rempli.
   rdvUrl: "https://calendly.com/thomas-labetouille/15-minute-meeting",
   // Photo dans public/ (ex. "/photo.jpg"). Vide : un monogramme à la place.
-  photo: "",
+  photo: "/photo.jpg",
   // Recommandation d'un ancien client, affichée seulement si remplie.
   // Exemple : { texte: "…", auteur: "Prénom Nom, poste, entreprise" }
   temoignage: null,
@@ -24,7 +24,7 @@ export const site = {
   adresse: "13 impasse André Marfaing, 31400 Toulouse",
   // Offre de lancement affichée sous les tarifs. null pour la retirer.
   offreLancement:
-    "Offre de lancement : pour mes trois premiers clients, le diagnostic est à 600 € au lieu de 1 200 €, en échange d'un retour écrit que je pourrai publier ici.",
+    "Offre de lancement : pour mes trois premiers clients, l'audit de fiabilité est à 600 € au lieu de 1 200 €, en échange d'un retour écrit que je pourrai publier ici.",
   mentionTva: "TVA non applicable, art. 293 B du CGI",
 };
 
@@ -32,28 +32,28 @@ export const site = {
 export const offres = [
   {
     id: "diagnostic",
-    nom: "Diagnostic",
-    duree: "2 jours",
+    nom: "Audit de fiabilité",
+    duree: "2 jours",
     prix: "à partir de 1 200 €",
-    pitch: "Savoir si un outil vaut le coup, avant de dépenser plus.",
+    pitch: "Savoir où votre outil casse, avant que vos clients le découvrent.",
     points: [
-      "Une demi-journée avec vos équipes, sur leur poste",
-      "Vos vrais documents ou données passés dans un prototype, résultats mesurés",
-      "Un rapport de deux pages : temps gagnable, erreurs évitables, limites",
-      "Si la réponse est non, je vous le dis",
+      "Une demi-journée avec ceux qui utilisent l'outil, pour voir les problèmes là où ils arrivent",
+      "Les bugs connus reproduits, et ceux qu'on ne connaît pas encore cherchés",
+      "Ce que vos tests actuels attrapent vraiment, mesuré",
+      "Un rapport de deux pages : ce qui est fragile, ce qui est urgent, ce qui peut attendre",
     ],
   },
   {
     id: "projet",
-    nom: "Projet",
-    duree: "4 à 6 semaines",
+    nom: "Correction et mise sous tests",
+    duree: "2 à 6 semaines",
     prix: "à partir de 5 000 €",
-    pitch: "Un outil sur un besoin précis, branché sur vos données.",
+    pitch: "Les bugs corrigés, et les tests qui les empêchent de revenir.",
     points: [
-      "Un périmètre choisi ensemble et écrit noir sur blanc",
-      "Critères de réussite chiffrés avant de commencer",
-      "Tests et mesures livrés avec le code",
-      "À la fin, vous gardez l'outil ou vous arrêtez",
+      "Une liste de problèmes choisie ensemble et écrite noir sur blanc",
+      "Chaque correction livrée avec le test qui la prouve",
+      "Tests rejoués automatiquement à chaque modification",
+      "Tout est documenté : votre équipe peut reprendre la main",
     ],
     recommande: true,
   },
@@ -62,11 +62,11 @@ export const offres = [
     nom: "Suivi",
     duree: "au mois",
     prix: "à partir de 250 € / mois",
-    pitch: "Un outil qui reste fiable quand vos données changent.",
+    pitch: "Un outil qui reste fiable quand vos données et vos logiciels changent.",
     points: [
-      "Corrections et petites évolutions",
-      "Nouvelle mesure chaque mois sur des données récentes",
-      "Adaptation quand un format ou un logiciel change",
+      "Correction des nouveaux bugs, chacun avec son test",
+      "Vérification régulière sur des données récentes",
+      "Alerte et adaptation quand un format ou un logiciel change",
       "Sans engagement de durée",
     ],
   },
@@ -81,7 +81,7 @@ export function lienRdv(sujet = "Échange de 15 minutes") {
   const corps =
     "Bonjour Thomas,\n\n" +
     "Je travaille chez : \n" +
-    "La tâche qui nous prend le plus de temps : \n" +
+    "Le problème ou le bug qui nous gêne : \n" +
     "Mes disponibilités pour un appel de 15 minutes : \n\n" +
     "Merci,";
   return `mailto:${site.email}?subject=${encodeURIComponent(sujet)}&body=${encodeURIComponent(corps)}`;

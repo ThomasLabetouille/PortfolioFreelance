@@ -6,28 +6,81 @@ const GH = "https://github.com/ThomasLabetouille/";
 
 export const services = [
   {
-    id: "documents",
-    titre: "L'IA sur vos documents et vos demandes",
+    id: "bugs",
+    titre: "Résoudre les bugs",
     texte:
-      "Lire des mails, des confirmations, des bons de commande ou des demandes clients et en sortir des lignes propres, prêtes à valider. Retrouver la bonne offre dans un catalogue à partir d'une phrase.",
+      "Un bug qui revient, un comportement que personne n'arrive à reproduire, une erreur qui n'apparaît que chez le client. Je le reproduis, je trouve sa cause, je le corrige, puis j'ajoute le test qui l'empêche de revenir.",
+    exemple: "les bugs trouvés dans mes projets",
+    ancre: "#bugs",
+  },
+  {
+    id: "tests",
+    titre: "Mettre en place les tests",
+    texte:
+      "Tests automatiques, tests de non-régression rejoués à chaque modification, intégration continue. Et je mesure ce qu'ils valent en y glissant exprès des erreurs : un test qui ne les attrape pas ne protège rien.",
+    exemple: "le banc de test d'un outil 3D",
+    ancre: "#projet-banc-unity",
+  },
+  {
+    id: "ia",
+    titre: "Fiabiliser vos outils IA",
+    texte:
+      "Un assistant ou un extracteur IA se trompe autrement qu'un logiciel classique : il invente, et pas toujours au même endroit. Je mesure ce qu'il fait vraiment, j'ajoute des contrôles qui relisent chaque résultat et je corrige ce qui dérive.",
     exemple: "Comptoir & Bordereau",
     ancre: "#projet-comptoir",
   },
+];
+
+// Le journal des bugs : des cas reels, trouves par des tests dans mes projets.
+export const bugs = [
   {
-    id: "outils",
-    titre: "Outils et automatisation sur mesure",
-    texte:
-      "Scripts, outils internes, connecteurs entre vos logiciels (Outlook, SharePoint, exports Excel), plugins pour Unreal Engine ou Unity. Ce qui se fait à la main chaque semaine et pourrait se faire seul.",
-    exemple: "Outils Unreal Engine et Unity",
-    ancre: "#projet-pilotage-ue5",
+    projet: "Bordereau · lecture de mails",
+    symptome: "« 1 340 EUR » lu 340",
+    detail: "17 prix faux sur 20 mails dès que Word ou Outlook glisse une espace fine entre les milliers.",
+    trouve: "Un test qui fait subir aux mails ce que leur fait une messagerie : fins de ligne Windows, espaces spéciales, accents perdus.",
+    corrige: "Le texte est remis dans une forme unique avant toute lecture.",
   },
   {
-    id: "logiciel",
-    titre: "Logiciel technique qui doit être juste",
-    texte:
-      "C++, C#, Python, Rust. Simulation, temps réel, embarqué, traitement de capteurs. Avec les tests automatiques qui prouvent que le logiciel fait ce qu'il annonce, y compris dans les cas qui fâchent.",
-    exemple: "Navigation et sûreté de drone",
-    ancre: "#projet-drone",
+    projet: "Bordereau · lecture de mails",
+    symptome: "Une promo prise pour une date de séjour",
+    detail: "Une signature publicitaire datée, en bas du mail, devenait la date de départ du client. Le même test a trouvé une réservation inventée à partir de l'en-tête quand Outlook change les fins de ligne.",
+    trouve: "Le même test : le mail modifié doit donner exactement le même résultat que l'original.",
+    corrige: "La signature est coupée avant la lecture ; trois dates dans un même bloc deviennent un doute signalé, pas un pari.",
+  },
+  {
+    projet: "Comptoir · IA",
+    symptome: "« Juillet » compris comme juillet dernier",
+    detail: "Sur 20 demandes de test, l'IA plaçait « juillet » dans l'année passée 11 fois. Et 15 fois, « en juillet » devenait « à partir du 1er juillet, sans limite ».",
+    trouve: "Un test qui compare ce que l'IA a compris aux réponses attendues, sans la relancer.",
+    corrige: "Le code relit les dates dans la phrase du client ; l'IA ne les décide plus.",
+  },
+  {
+    projet: "Comptoir · IA",
+    symptome: "Même phrase, deux réponses",
+    detail: "« On habite Bordeaux… au départ de chez nous » : l'aéroport était trouvé à une mesure, perdu à la suivante.",
+    trouve: "Le test de non-régression, rejoué après chaque nouvelle mesure.",
+    corrige: "L'aéroport est relu dans la phrase. Un modèle ne répond pas deux fois pareil : le code doit vérifier.",
+  },
+  {
+    projet: "Outil 3D · Unity",
+    symptome: "Une fissure de 15 µm",
+    detail: "Entre une face et son bord, dans du code qui compilait et s'affichait parfaitement à l'écran. Trois autres bugs du même genre.",
+    trouve: "40 000 cas vérifiés en quelques secondes, sur des propriétés plutôt que sur des exemples.",
+    corrige: "Corrigé, puis revérifié par le banc, qui tourne à chaque modification.",
+  },
+  {
+    projet: "Unreal Engine · jeu",
+    symptome: "Les ennemis ne poursuivent plus",
+    detail: "La perception de tous les ennemis était coupée par un réglage. Le code compilait, aucune erreur dans les journaux : aucun contrôle du code ne pouvait le voir.",
+    trouve: "Un agent qui joue le niveau tout seul et note ce qui se passe vraiment.",
+    corrige: "Le réglage est corrigé, puis revérifié en faisant rejouer l'agent.",
+  },
+  {
+    projet: "Drone · navigation",
+    symptome: "Un signe faux, des vols qui semblaient justes",
+    detail: "Dans le calcul qui recale le filtre de navigation, faux depuis la troisième étape du projet. Une deuxième erreur rendait l'incertitude du filtre impossible après le retour du GPS.",
+    trouve: "Des vérifications indépendantes : le même calcul refait par une autre méthode, et 63 erreurs glissées exprès pour éprouver les tests.",
+    corrige: "Les deux sont corrigés, et ces vérifications font partie des 197 tests du projet.",
   },
 ];
 
@@ -35,11 +88,11 @@ export const projets = [
   {
     id: "comptoir",
     image: "/projets/comptoir.jpg",
-    domaine: "IA appliquée · documents",
+    domaine: "IA sous contrôle · documents",
     titre: "Comptoir & Bordereau",
     resume:
-      "Deux outils construits sur l'exemple d'une agence de voyages : l'un trouve les séjours qui correspondent à une phrase de client, l'autre transforme les mails des hôtels en lignes de réservation. L'IA comprend le texte, des règles écrites décident.",
-    preuve: "263 valeurs sur 263 rattachées à la bonne réservation, 281 erreurs plantées exprès toutes repérées",
+      "Deux outils IA construits sur l'exemple d'une agence de voyages (recherche de séjours, lecture des mails d'hôtels), et surtout les tests qui les surveillent : ils y ont trouvé 4 erreurs de l'IA et 4 bugs, tous corrigés et verrouillés par un test.",
+    preuve: "281 erreurs glissées exprès dans les résultats, toutes repérées par le contrôle automatique",
     tech: ["Python", "LLM local", "Microsoft 365", "Tests"],
     liens: [
       { libelle: "Essayer la démo", href: "#demo" },
@@ -68,7 +121,7 @@ export const projets = [
     titre: "Vigie",
     resume:
       "Un logiciel qui surveille un drone en vol et le fait rentrer seul s'il sort de sa zone, si sa batterie faiblit ou s'il perd le contact. Testé de bout en bout en simulation.",
-    preuve: "Ordre de retour accepté par le pilote automatique en 16 ms",
+    preuve: "38 tests automatiques, dont des tests de propriétés sur la zone de vol",
     tech: ["Rust", "MAVLink", "PX4", "Tests de propriétés"],
     liens: [
       { libelle: "Code", href: GH + "vigie" },
@@ -81,19 +134,19 @@ export const projets = [
     domaine: "IA locale · outil métier",
     titre: "Assistant IA local pour Unreal Engine",
     resume:
-      "Un assistant qui pilote un logiciel 3D en langage naturel, entièrement sur un PC de bureau : pas de compte, pas d'abonnement, aucune donnée qui sort. Il demande confirmation avant toute modification.",
-    preuve: "14 572 fonctions du logiciel indexées pour que l'IA cesse d'en inventer",
+      "Un assistant qui pilote un logiciel 3D en langage naturel, entièrement sur un PC de bureau. Le code l'empêche d'annoncer une réussite après une erreur, et lui fournit les vraies fonctions du logiciel pour qu'il cesse d'en inventer.",
+    preuve: "22 scripts de test avec un faux modèle, qui tournent sans le logiciel 3D",
     tech: ["Python", "Ollama", "MCP", "C++"],
     liens: [{ libelle: "Détails", href: TECH + "assistant-ue5-local" }],
   },
   {
     id: "pilotage-ue5",
     image: "/projets/pilotage-ue5.jpg",
-    domaine: "Automatisation · 3D",
+    domaine: "Vérification · 3D",
     titre: "Pilotage vérifié d'un moteur 3D",
     resume:
       "Un plugin qui permet à une IA de construire des niveaux dans Unreal Engine, et qui vérifie tout avant d'enregistrer : collisions, éléments manquants, comportement en jeu.",
-    preuve: "117 tests rejoués à chaque modification",
+    preuve: "Un agent qui joue le niveau tout seul a trouvé un vrai bug : les ennemis ne poursuivaient plus le joueur",
     tech: ["C++", "Python", "Unreal Engine 5", "CI"],
     liens: [
       { libelle: "Code", href: GH + "ue5-agent-verified-levelgen" },
@@ -107,7 +160,7 @@ export const projets = [
     titre: "Outil 3D et son banc de test",
     resume:
       "Un outil Unity pour dessiner des pièces et percer portes et fenêtres, et surtout le banc de test qui le vérifie automatiquement. Il a trouvé quatre vrais bugs dans du code qui avait l'air de marcher.",
-    preuve: "40 000 cas vérifiés en quelques secondes",
+    preuve: "4 vrais bugs trouvés, dont une fissure de 15 µm invisible à l'écran",
     tech: ["C#", "Unity 6", "Mutation testing"],
     liens: [
       { libelle: "Code", href: GH + "unity-room-builder" },
